@@ -1,73 +1,42 @@
 import React, { useState } from "react";
-import { Grid, Typography, Button, ButtonBase } from "@material-ui/core";
+import { Grid, Button, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
-import Link from "../../Link/Link";
+import StyledButton from "../../Buttons/StyledButton/StyledButton";
+import RedeemTicketsButton from "../../Buttons/RedeemTicketsButton/RedeemTicketsButton";
+import HeaderTitle from "../../HeaderTitle/HeaderTitle";
+import NavLinks from "../../NavLinks/NavLinks";
+import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
 
-const textColor = "#777";
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
-  titleContainer: {
-    display: "flex",
-    alignItems: "flex-end",
-    marginBottom: theme.spacing(1),
-    color: theme.palette.type==='dark'?"#bbb":"#555"
-  },
-  titleBigText: {
-    marginRight: theme.spacing(1),
-    fontWeight: 700,
-  },
-  titleSmallText: {
-    fontWeight: 700,
-  },
-  paragraph: {
-    maxWidth: "75%",
-    color:textColor
-  },
-  buttonContainer: {
+
+  buttonContainerDesktop: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
   },
+
+  buttonContainerTablet: {
+    textAlign: "right",
+    padding: "8px",
+  },
+
   connectButton: {
-    backgroundColor: purple["300"],
-    color: theme.palette.getContrastText(purple["300"]),
+    backgroundColor: "#AA47F5",
+    color: "#FFF",
     padding: "4px 16px",
     borderRadius: 0,
     "&:hover": {
       backgroundColor: purple["500"],
     },
   },
-  redeemButton: {
+
+  mobileActionButtonContainer: {
     display: "flex",
-    alignItems: "center",
-  },
-  redeemTicketsText: {
-    color: textColor,
-  },
-  redeemTextIcon: {
-    borderRadius: "50%",
-    backgroundColor: "#cab577",
-    color: "#fff",
-    height: "48px",
-    width: "48px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: "8px",
-  },
-  navLinks: {
-    color: "#ccc",
-    display: "flex",
-    justifyContent: "flex-end",
-    marginTop: "16px",
-  },
-  link: {
-    color: textColor,
-    margin: "0 8px",
+    justifyContent: "space-between",
   },
 }));
 
@@ -79,6 +48,8 @@ const Header = () => {
     "Connect Your Wallet"
   );
 
+  const [delegateButtonText, setDelegateButtonText] = useState("Delegate Now");
+
   const handleRedeemButtonClick = () => {
     console.log("redeem button clicked");
   };
@@ -86,63 +57,92 @@ const Header = () => {
   const handleConnectWalletButtonClick = () => {
     setConnectWalletButtonText("ACCOUNT_ID: 2U8SD89");
     setRedeemTicketsIconText("3");
+    setDelegateButtonText("Stake now");
   };
 
   return (
     <header className={classes.root}>
-      <Grid container>
-        <Grid item xs={7}>
-          <div className={classes.titleContainer}>
-            <Typography className={classes.titleBigText} variant="h4">
-              AZUL COLLECTION
-            </Typography>
-            <Typography className={classes.titleSmallText} variant="h6">
-              BY SECRET UNDERGROUND
-            </Typography>
-          </div>
-          <Typography className={classes.paragraph} paragraph>
-            Stake your SCRT with Secret Underground and participate in the NFT's
-            digital art raffle twice a month.
-          </Typography>
-        </Grid>
+      {/* desktop view */}
+      <Hidden mdDown>
+        <Grid container>
+          <Grid item xs={7}>
+            <HeaderTitle />
+            <HeaderParagraph />
+            <StyledButton>{delegateButtonText}</StyledButton>
+          </Grid>
 
-        <Grid item xs={5}>
-          <div className={classes.buttonContainer}>
-            <ButtonBase
-              onClick={handleRedeemButtonClick}
-              className={classes.redeemButton}
-            >
-              <div className={classes.redeemTextIcon}>
-                <Typography variant="h4">{redeemTicketsIconText}</Typography>
-              </div>
-              <Typography
-                className={classes.redeemTicketsText}
-                variant="button"
+          <Grid item xs={5}>
+            <div className={classes.buttonContainerDesktop}>
+              <RedeemTicketsButton
+                iconText={redeemTicketsIconText}
+                onClick={handleRedeemButtonClick}
+              />
+              <Button
+                onClick={handleConnectWalletButtonClick}
+                size="small"
+                className={classes.connectButton}
               >
-                Redeem Tickets
-              </Typography>
-            </ButtonBase>
-            <Button
-              onClick={handleConnectWalletButtonClick}
-              size="small"
-              className={classes.connectButton}
-            >
-              {connectWalletButtonText}
-            </Button>
-          </div>
-          <div className={classes.navLinks}>
-            <Link className={classes.link} to="/">
-              HOW TO JOIN
-            </Link>
-            <Link className={classes.link} to="/">
-              ABOUT
-            </Link>
-            <Link className={classes.link} to="/">
-              SOCIAL
-            </Link>
-          </div>
+                {connectWalletButtonText}
+              </Button>
+            </div>
+            <NavLinks />
+          </Grid>
         </Grid>
-      </Grid>
+      </Hidden>
+
+      {/* tablet view */}
+      <Hidden lgUp xsDown>
+        <Grid container alignItems="center">
+          <Grid item xs={7}>
+            <HeaderTitle />
+            <HeaderParagraph />
+          </Grid>
+
+          <Grid item xs={5}>
+            <div className={classes.buttonContainerTablet}>
+              <Button
+                onClick={handleConnectWalletButtonClick}
+                size="small"
+                className={classes.connectButton}
+              >
+                {connectWalletButtonText}
+              </Button>
+
+              <NavLinks />
+            </div>
+          </Grid>
+          <Grid item xs={7}>
+            <StyledButton>Delegate Now</StyledButton>
+          </Grid>
+          <Grid item xs={5}>
+            <RedeemTicketsButton
+              iconText={redeemTicketsIconText}
+              onClick={handleRedeemButtonClick}
+            />
+          </Grid>
+        </Grid>
+      </Hidden>
+
+      {/* mobile view */}
+      <Hidden smUp>
+        <Button
+          onClick={handleConnectWalletButtonClick}
+          size="small"
+          className={classes.connectButton}
+        >
+          {connectWalletButtonText}
+        </Button>
+        <NavLinks />
+        <HeaderTitle />
+        <HeaderParagraph />
+        <div className={classes.mobileActionButtonContainer}>
+          <StyledButton>Delegate Now</StyledButton>
+          <RedeemTicketsButton
+            iconText={redeemTicketsIconText}
+            onClick={handleRedeemButtonClick}
+          />
+        </div>
+      </Hidden>
     </header>
   );
 };

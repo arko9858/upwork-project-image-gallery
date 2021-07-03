@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme, { darkTheme } from "../../src/theme";
 import Layout from "../../src/components/Layout/Layout";
-import { Switch } from "@material-ui/core";
 import { Container } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import { Brightness3, WbSunny } from "@material-ui/icons";
 
 export default function TopLayout(props) {
   const [darkThemeOn, setDarkThemeOn] = useState(false);
 
-  useEffect(() => {
-    console.log("darkThemeOn");
-    console.log(darkThemeOn);
-  }, [darkThemeOn]);
+  const handleClick = () => {
+    setDarkThemeOn(!darkThemeOn);
+  };
 
   return (
     <React.Fragment>
@@ -31,14 +31,14 @@ export default function TopLayout(props) {
       <ThemeProvider theme={darkThemeOn ? darkTheme : theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Container maxWidth="lg">
-          <div style={{ display: "flex", justifyContent:'flex-end',paddingTop:'16px'}}>
-            <Switch
-              style={{ float: "right" }}
-              checked={darkThemeOn}
-              onChange={(e) => setDarkThemeOn(e.target.checked)}
-            />
+
+        <Container maxWidth="lg" disableGutters style={{ padding: "24px" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <IconButton onClick={handleClick} aria-label="toggle-theme">
+              {darkThemeOn ? <WbSunny /> : <Brightness3 />}
+            </IconButton>
           </div>
+
           <Layout>{props.children}</Layout>
         </Container>
       </ThemeProvider>

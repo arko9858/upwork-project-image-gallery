@@ -14,7 +14,7 @@ const lightTheme = createMuiTheme({
       main: red.A400,
     },
     background: {
-      default: "#eceff1",
+      default: "#EFEFEF",
     },
   },
 });
