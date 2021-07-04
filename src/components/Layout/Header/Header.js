@@ -11,6 +11,7 @@ import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
+    padding:'0 16px'
   },
 
   buttonContainerDesktop: {
@@ -112,7 +113,7 @@ const Header = () => {
             </div>
           </Grid>
           <Grid item xs={7}>
-            <StyledButton>Delegate Now</StyledButton>
+            <StyledButton>{delegateButtonText}</StyledButton>
           </Grid>
           <Grid item xs={5}>
             <RedeemTicketsButton
@@ -136,7 +137,7 @@ const Header = () => {
         <HeaderTitle />
         <HeaderParagraph />
         <div className={classes.mobileActionButtonContainer}>
-          <StyledButton>Delegate Now</StyledButton>
+          <StyledButton>{delegateButtonText}</StyledButton>
           <RedeemTicketsButton
             iconText={redeemTicketsIconText}
             onClick={handleRedeemButtonClick}

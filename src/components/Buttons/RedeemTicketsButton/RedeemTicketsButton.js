@@ -16,10 +16,10 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: "8px",
   },
   redeemTicketsText: {
     color: "777",
+    marginLeft: "8px",
   },
 });
 
@@ -27,14 +27,16 @@ const RedeemTicketsButton = ({ iconText, onClick }) => {
   const classes = useStyles();
 
   return (
-    <ButtonBase onClick={onClick} className={classes.root}>
-      <div className={classes.redeemTextIcon}>
-        <Typography variant="h4">{iconText}</Typography>
-      </div>
+    <div className={classes.root}>
+      <ButtonBase onClick={onClick}>
+        <div className={classes.redeemTextIcon}>
+          <Typography variant="h4">{iconText}</Typography>
+        </div>
+      </ButtonBase>
       <Typography className={classes.redeemTicketsText} variant="button">
         Redeem Tickets
       </Typography>
-    </ButtonBase>
+    </div>
   );
 };
 

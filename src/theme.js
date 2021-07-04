@@ -17,11 +17,21 @@ const lightTheme = createMuiTheme({
       default: "#EFEFEF",
     },
   },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 1060,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
 export const darkTheme = createMuiTheme({
   palette: {
-    type:"dark",
+    type: "dark",
   },
 });
 
