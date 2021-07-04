@@ -2,7 +2,7 @@ import React from "react";
 import { ButtonBase, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -20,8 +20,11 @@ const useStyles = makeStyles({
   redeemTicketsText: {
     color: "777",
     marginLeft: "8px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize:'.9rem'
+    },
   },
-});
+}));
 
 const RedeemTicketsButton = ({ iconText, onClick }) => {
   const classes = useStyles();
@@ -33,8 +36,8 @@ const RedeemTicketsButton = ({ iconText, onClick }) => {
           <Typography variant="h4">{iconText}</Typography>
         </div>
       </ButtonBase>
-      <Typography className={classes.redeemTicketsText} variant="button">
-        Redeem Tickets
+      <Typography className={classes.redeemTicketsText} color="textSecondary" variant="subtitle1">
+        REDEEM TICKETS
       </Typography>
     </div>
   );

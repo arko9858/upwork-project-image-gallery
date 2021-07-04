@@ -34,11 +34,6 @@ const ImageSortButtons = () => {
           Owned
         </Typography>
       </Button>
-      <Button>
-        <Typography variant="button" color="textSecondary">
-          Active
-        </Typography>
-      </Button>
     </div>
   );
 };

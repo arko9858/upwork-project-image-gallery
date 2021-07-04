@@ -8,10 +8,13 @@ import HeaderTitle from "../../HeaderTitle/HeaderTitle";
 import NavLinks from "../../NavLinks/NavLinks";
 import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding:'0 16px'
+    padding:'0 16px',
+    [theme.breakpoints.down("xs")]: {
+      padding:"0 8px"
+    },
   },
 
   buttonContainerDesktop: {
@@ -38,6 +41,7 @@ const useStyles = makeStyles(() => ({
   mobileActionButtonContainer: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems:'center'
   },
 }));
 
