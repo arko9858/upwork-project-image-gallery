@@ -18,11 +18,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   redeemTicketsText: {
-    color: "777",
+    letterSpacing:'0px',
     marginLeft: "8px",
     [theme.breakpoints.down("xs")]: {
-      fontSize:'.9rem'
+      fontSize: ".9rem",
     },
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  roundButton: {
+    borderRadius: "50%",
   },
 }));
 
@@ -31,12 +37,17 @@ const RedeemTicketsButton = ({ iconText, onClick }) => {
 
   return (
     <div className={classes.root}>
-      <ButtonBase onClick={onClick}>
+      <ButtonBase onClick={onClick} className={classes.roundButton}>
         <div className={classes.redeemTextIcon}>
           <Typography variant="h4">{iconText}</Typography>
         </div>
       </ButtonBase>
-      <Typography className={classes.redeemTicketsText} color="textSecondary" variant="subtitle1">
+      <Typography
+        className={classes.redeemTicketsText}
+        color="textPrimary"
+        variant="subtitle1"
+        onClick={onClick}
+      >
         REDEEM TICKETS
       </Typography>
     </div>

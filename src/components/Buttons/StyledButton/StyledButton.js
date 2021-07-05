@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     padding: "8px 16px",
     [theme.breakpoints.down("xs")]: {
-      padding: "0px 12px",
+      padding: "0px 16px",
       height: "36px",
     },
   },

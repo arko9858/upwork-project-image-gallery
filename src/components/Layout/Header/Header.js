@@ -11,10 +11,6 @@ import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding:'0 16px',
-    [theme.breakpoints.down("xs")]: {
-      padding:"0 8px"
-    },
   },
 
   buttonContainerDesktop: {
@@ -25,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
   buttonContainerTablet: {
     textAlign: "right",
-    padding: "8px",
   },
 
   connectButton: {
@@ -38,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  mobileActionButtonContainer: {
+  itemSpaceBetween: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems:'center'
+    alignItems: "center",
   },
 }));
 
@@ -116,16 +111,14 @@ const Header = () => {
               <NavLinks />
             </div>
           </Grid>
-          <Grid item xs={7}>
-            <StyledButton>{delegateButtonText}</StyledButton>
-          </Grid>
-          <Grid item xs={5}>
-            <RedeemTicketsButton
-              iconText={redeemTicketsIconText}
-              onClick={handleRedeemButtonClick}
-            />
-          </Grid>
         </Grid>
+        <div className={classes.itemSpaceBetween}>
+          <StyledButton>{delegateButtonText}</StyledButton>
+          <RedeemTicketsButton
+            iconText={redeemTicketsIconText}
+            onClick={handleRedeemButtonClick}
+          />
+        </div>
       </Hidden>
 
       {/* mobile view */}
@@ -140,7 +133,7 @@ const Header = () => {
         <NavLinks />
         <HeaderTitle />
         <HeaderParagraph />
-        <div className={classes.mobileActionButtonContainer}>
+        <div className={classes.itemSpaceBetween}>
           <StyledButton>{delegateButtonText}</StyledButton>
           <RedeemTicketsButton
             iconText={redeemTicketsIconText}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import testImage from "../../images/testImage.jpg";
 import {
   Card,
@@ -9,23 +9,28 @@ import {
 } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ThemeContext from "../../contexts/ThemeContext";
 const activeButton =
   "transparent linear-gradient(270deg, #F16331 0%, #AC1CA6 100%) 0% 0% no-repeat padding-box";
 const disabledButton =
   "transparent linear-gradient(270deg, #E0C6BD 0%, #DB75D7 100%) 0% 0% no-repeat padding-box";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 360,
-    margin: "16px auto",
+    maxWidth: "100%",
+    margin: "16px 0",
   },
 
   media: {
     height: "360px",
   },
-  cardContent: {
+  cardContentLight: {
     padding: "16px 0",
+    backgroundColor: "#F4F4F4",
+  },
+  cardContentDark: {
+    padding: "16px 0",
+    backgroundColor: "#221824",
   },
   divider: { padding: "0 24px" },
   div1: {
@@ -58,7 +63,7 @@ const useStyles = makeStyles({
   textStyle: {
     fontWeight: 500,
   },
-});
+}));
 
 const ImageCard = ({
   imgTitle,
@@ -69,11 +74,16 @@ const ImageCard = ({
   buttonText,
 }) => {
   const classes = useStyles();
+  const darkModeOn = useContext(ThemeContext);
 
   return (
     <Card elevation={0} className={classes.card} square>
       <CardMedia className={classes.media} image={testImage} title={imgTitle} />
-      <CardContent className={classes.cardContent}>
+      <CardContent
+        className={
+          darkModeOn ? classes.cardContentDark : classes.cardContentLight
+        }
+      >
         <Typography
           color="textSecondary"
           className={classes.title}

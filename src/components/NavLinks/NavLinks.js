@@ -25,7 +25,7 @@ const NavLinks = () => {
 
   return (
     <div className={classes.root}>
-      <nav>
+      <nav aria-label="Page Links">
         <Link className={classes.link} to="/">
           HOW TO JOIN
         </Link>
