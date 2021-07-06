@@ -18,6 +18,7 @@ const lightTheme = createMuiTheme({
     },
     text: {
       primary: "#707070",
+      secondary: "#2A2C64",
     },
   },
 
