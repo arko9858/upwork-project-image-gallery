@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ButtonBase, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import AccountContext from "../../../contexts/AccountContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,19 +27,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RedeemTicketsButton = ({ iconText, onClick }) => {
+const RedeemTicketsButton = ({ onClick }) => {
   const classes = useStyles();
+  const [accountId] = useContext(AccountContext);
 
   return (
     <div className={classes.root}>
       <ButtonBase disableRipple onClick={onClick}>
         <div className={classes.redeemTextIcon}>
-          <Typography variant="h4">{iconText}</Typography>
+          <Typography variant="h4">
+            {accountId && accountId.length > 0 ? "3" : "?"}
+          </Typography>
         </div>
         <Typography
           className={classes.redeemTicketsText}
           color="textPrimary"
-          variant="subtitle1"
+          variant="body1"
         >
           REDEEM TICKETS
         </Typography>

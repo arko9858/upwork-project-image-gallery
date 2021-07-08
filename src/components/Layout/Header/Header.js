@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from "react";
-import { Grid, Button, Hidden } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { purple } from "@material-ui/core/colors";
-import StyledButton from "../../Buttons/StyledButton/StyledButton";
+import DelegateButton from "../../Buttons/DelegateButton/DelegateButton";
 import RedeemTicketsButton from "../../Buttons/RedeemTicketsButton/RedeemTicketsButton";
 import HeaderTitle from "../../HeaderTitle/HeaderTitle";
 import NavLinks from "../../NavLinks/NavLinks";
 import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
-import RedeemModal from "../../Modals/RedeemModal/RedeemModal";
+import LoginButton from "../../Buttons/LoginButton/LoginButton";
+import WonModal from "../../Modals/WonModal/WonModal";
+import StakeModal from "../../Modals/StakeModal/StakeModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,17 +24,6 @@ const useStyles = makeStyles((theme) => ({
   buttonContainerTablet: {
     textAlign: "right",
   },
-
-  connectButton: {
-    backgroundColor: "#AA47F5",
-    color: "#FFF",
-    padding: "4px 16px",
-    borderRadius: 0,
-    "&:hover": {
-      backgroundColor: purple["500"],
-    },
-  },
-
   itemSpaceBetween: {
     display: "flex",
     justifyContent: "space-between",
@@ -44,32 +34,46 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
 
-  const [redeemTicketsIconText, setRedeemTicketsIconText] = useState("?");
-  const [connectWalletButtonText, setConnectWalletButtonText] = useState(
-    "Connect Your Wallet"
-  );
-
-  const [delegateButtonText, setDelegateButtonText] = useState("Delegate Now");
-
-  // redeem modal states and actions
-
-  const [redeemModalIsOpen, setRedeemModalIsOpen] = useState(false);
-  const openRedeemModal = () => {
-    setRedeemModalIsOpen(true);
+  // won modal states and actions
+  const [wonModalOpen, setWonModalOpen] = useState(false);
+  const openWonModal = () => {
+    setWonModalOpen(true);
   };
-  const closeRedeemModal = () => {
-    setRedeemModalIsOpen(false);
-  };
-  const handleRedeemButtonClick = () => {
-    openRedeemModal();
+  const closeWonModal = () => {
+    setWonModalOpen(false);
   };
 
   // ##########################
 
-  const handleConnectWalletButtonClick = () => {
-    setConnectWalletButtonText("ACCOUNT_ID: 2U8SD89");
-    setRedeemTicketsIconText("3");
-    setDelegateButtonText("Stake now");
+  // participate modal states and actions
+  // const [participateModalIsOpen, setParticipateModalIsOpen] = useState(false);
+  // const openParticipateModal = () => {
+  //   seParticipateModalIsOpen(true);
+  // };
+  // const closeParticipateModal = () => {
+  //   setParticipateModalIsOpen(false);
+  // };
+
+  // ##########################
+
+  // stake modal states and actions
+  const [stakeModalOpen, setStakeModalOpen] = useState(false);
+
+  const openStakeModal = () => {
+    setStakeModalOpen(true);
+  };
+  const closeStakeModal = () => {
+    setStakeModalOpen(false);
+  };
+
+  // #######################
+
+  const handleRedeemButtonClick = () => {
+    openWonModal();
+  };
+
+  const handleDelegateButtonClick = () => {
+    openStakeModal();
   };
 
   return (
@@ -81,22 +85,13 @@ const Header = () => {
             <Grid item xs={7}>
               <HeaderTitle />
               <HeaderParagraph />
-              <StyledButton>{delegateButtonText}</StyledButton>
+              <DelegateButton onClick={handleDelegateButtonClick} />
             </Grid>
 
             <Grid item xs={5}>
               <div className={classes.buttonContainerDesktop}>
-                <RedeemTicketsButton
-                  iconText={redeemTicketsIconText}
-                  onClick={handleRedeemButtonClick}
-                />
-                <Button
-                  onClick={handleConnectWalletButtonClick}
-                  size="small"
-                  className={classes.connectButton}
-                >
-                  {connectWalletButtonText}
-                </Button>
+                <RedeemTicketsButton onClick={handleRedeemButtonClick} />
+                <LoginButton />
               </div>
               <NavLinks />
             </Grid>
@@ -113,49 +108,32 @@ const Header = () => {
 
             <Grid item xs={5}>
               <div className={classes.buttonContainerTablet}>
-                <Button
-                  onClick={handleConnectWalletButtonClick}
-                  size="small"
-                  className={classes.connectButton}
-                >
-                  {connectWalletButtonText}
-                </Button>
+                <LoginButton />
 
                 <NavLinks />
               </div>
             </Grid>
           </Grid>
           <div className={classes.itemSpaceBetween}>
-            <StyledButton>{delegateButtonText}</StyledButton>
-            <RedeemTicketsButton
-              iconText={redeemTicketsIconText}
-              onClick={handleRedeemButtonClick}
-            />
+            <DelegateButton onClick={handleDelegateButtonClick}/>
+            <RedeemTicketsButton onClick={handleRedeemButtonClick} />
           </div>
         </Hidden>
 
         {/* mobile view */}
         <Hidden smUp>
-          <Button
-            onClick={handleConnectWalletButtonClick}
-            size="small"
-            className={classes.connectButton}
-          >
-            {connectWalletButtonText}
-          </Button>
+          <LoginButton />
           <NavLinks />
           <HeaderTitle />
           <HeaderParagraph />
           <div className={classes.itemSpaceBetween}>
-            <StyledButton>{delegateButtonText}</StyledButton>
-            <RedeemTicketsButton
-              iconText={redeemTicketsIconText}
-              onClick={handleRedeemButtonClick}
-            />
+            <DelegateButton onClick={handleDelegateButtonClick}/>
+            <RedeemTicketsButton onClick={handleRedeemButtonClick} />
           </div>
         </Hidden>
       </header>
-      <RedeemModal open={redeemModalIsOpen} handleClose={closeRedeemModal} />
+      <WonModal open={wonModalOpen} handleClose={closeWonModal} />
+      <StakeModal open={stakeModalOpen} handleClose={closeStakeModal} />
     </Fragment>
   );
 };

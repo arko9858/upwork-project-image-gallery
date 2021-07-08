@@ -8,6 +8,7 @@ import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeBut
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "32px 36px",
+    paddingBottom:'24px',
     width: "768px",
   },
   title: {
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RedeemModal = ({ open, handleClose }) => {
+const WonModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const titleText = "Yay! Congratulations you won 3 NFT’s!";
   const imageLabel = "SWIMMINGPOOL";
@@ -161,4 +162,4 @@ const RedeemModal = ({ open, handleClose }) => {
   );
 };
 
-export default RedeemModal;
+export default WonModal;

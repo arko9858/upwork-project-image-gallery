@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import testImage1 from "../../../../images/testImage1.jpg";
 import testImage2 from "../../../../images/testImage2.jpg";
 import testImage3 from "../../../../images/testImage3.jpg";
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     display: "block",
     [theme.breakpoints.down("xs")]: {
-      height:'180px'
+      height: "180px",
     },
   },
   stepper: {
@@ -61,20 +60,20 @@ const ImageCarousel = () => {
         variant="dots"
         activeStep={activeStep}
         nextButton={
-          <Button
-            size="small"
+          <IconButton
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            <Typography color="textSecondary">Next</Typography>
             <KeyboardArrowRight />
-          </Button>
+          </IconButton>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <IconButton
+            onClick={handleBack}
+            disabled={activeStep === 0}
+          >
             <KeyboardArrowLeft />
-            <Typography color="textSecondary">Back</Typography>
-          </Button>
+          </IconButton>
         }
       />
     </div>

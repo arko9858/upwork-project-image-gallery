@@ -10,9 +10,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   content: {
-    backdropFilter: "blur(24px)",
     minWidth: "100px",
     minHeight: "50px",
+    backdropFilter: "blur(24px)",
+    WebkitBackdropFilter: "blur(24px)",
   },
 
   contentBackgroundLight: {
@@ -32,11 +33,13 @@ const ModalWrapper = ({ open, handleClose, children }) => {
   const backdropStyleLight = {
     backgroundColor: "rgba(200, 200, 200, 0.1)",
     backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
   };
 
   const backdropStyleDark = {
     backgroundColor: "rgba(0, 0, 0, 0.1)",
     backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
   };
 
   return (

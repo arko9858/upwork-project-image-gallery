@@ -60,7 +60,7 @@ const IndexPage = () => {
       <ImageSortButtons />
 
       {/* image list */}  
-      <Grid container spacing={3} justify="space-between">
+      <Grid container spacing={6} justify="space-between">
         {testData.map((item, index) => (
           <Grid key={index} item xs={12} sm={6} md={4}>
             <ImageCard

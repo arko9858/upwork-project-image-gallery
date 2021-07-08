@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Typography } from "@material-ui/core";
+import AccountContext from "../../../contexts/AccountContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,14 +27,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyledButton = (props) => {
+const DelegateButton = ({ onClick }) => {
   const classes = useStyles();
+  const [accountId] = useContext(AccountContext);
 
   return (
-    <Button size="small" className={classes.root}>
-      <Typography className={classes.text}>{props.children}</Typography>
+    <Button size="small" className={classes.root} onClick={onClick}>
+      <Typography className={classes.text}>
+        {accountId && accountId.length > 0 ? "Stake Now" : "Delegate Now"}
+      </Typography>
     </Button>
   );
 };
 
-export default StyledButton;
+export default DelegateButton;
