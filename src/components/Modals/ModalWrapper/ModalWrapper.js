@@ -11,10 +11,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backdropFilter: "blur(24px)",
-    maxWidth: "720px",
-    minWidth: "300px",
-    minHeight: "300px",
-    maxHeight: "80vh",
+    minWidth: "100px",
+    minHeight: "50px",
   },
 
   contentBackgroundLight: {

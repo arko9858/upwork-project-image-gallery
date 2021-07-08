@@ -4,7 +4,9 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import testImage from "../../../../images/testImage.jpg";
+import testImage1 from "../../../../images/testImage1.jpg";
+import testImage2 from "../../../../images/testImage2.jpg";
+import testImage3 from "../../../../images/testImage3.jpg";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     height: "256px",
     overflow: "hidden",
     display: "block",
+    [theme.breakpoints.down("xs")]: {
+      height:'180px'
+    },
   },
   stepper: {
     backgroundColor: "rgba(255,255,255,0)",
@@ -24,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const testData = [
-  { imgUrl: testImage, label: "test image" },
-  { imgUrl: testImage, label: "test image" },
-  { imgUrl: testImage, label: "test image" },
+  { imgUrl: testImage1, label: "test image 1" },
+  { imgUrl: testImage2, label: "test image 2" },
+  { imgUrl: testImage3, label: "test image 3" },
 ];
 
 const ImageCarousel = () => {
