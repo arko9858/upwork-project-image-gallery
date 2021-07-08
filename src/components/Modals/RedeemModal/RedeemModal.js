@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
   },
   instructions: {
-    fontSize: "1.1rem",
     margin: "20px 0",
     letterSpacing: "0px",
   },
@@ -103,6 +102,7 @@ const RedeemModal = ({ open, handleClose }) => {
               <Typography
                 className={classes.instructions}
                 color="textSecondary"
+                variant="body1"
               >
                 {instructions}
               </Typography>
