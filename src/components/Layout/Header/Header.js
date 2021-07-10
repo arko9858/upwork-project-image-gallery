@@ -1,12 +1,13 @@
 import React, { Fragment, useContext, useState } from "react";
-import { Grid, Hidden } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import { makeStyles } from "@material-ui/core/styles";
 import DelegateButton from "../../Buttons/DelegateButton/DelegateButton";
 import RedeemTicketsButton from "../../Buttons/RedeemTicketsButton/RedeemTicketsButton";
 import HeaderTitle from "../../HeaderTitle/HeaderTitle";
 import NavLinks from "../../NavLinks/NavLinks";
 import HeaderParagraph from "../../HeaderParagraph/HeaderParagraph";
-import LoginButton from "../../Buttons/LoginButton/LoginButton";
+import ConnectButton from "../../Buttons/ConnectButton/ConnectButton";
 import WonModal from "../../Modals/WonModal/WonModal";
 import StakeModal from "../../Modals/StakeModal/StakeModal";
 import ConnectWalletModal from "../../Modals/ConnectWalletModal/ConnectWalletModal";
@@ -15,7 +16,7 @@ import LostModal from "../../Modals/LostModal/LostModal";
 import ParticipateModal from "../../Modals/ParticipateModal/ParticipateModal";
 
 import AccountContext from "../../../contexts/AccountContext";
-import ParticipateContext from "../../../contexts/ParticipateContext";
+import ModalContext from "../../../contexts/ModalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   const { accountId, connected } = useContext(AccountContext);
+  const {
+    participateModalOpen,
+    setParticipateModalOpen,
+    delegateWarningModalOpen,
+    setDelegateWarningModalOpen,
+  } = useContext(ModalContext);
 
   // for testing 2 modals
   const [toggle, setToggle] = useState(false);
@@ -57,8 +64,6 @@ const Header = () => {
   // ##########################
 
   // participate modal states and actions
-  const { participateModalOpen, setParticipateModalOpen } =
-    useContext(ParticipateContext);
 
   const closeParticipateModal = () => {
     setParticipateModalOpen(false);
@@ -91,12 +96,7 @@ const Header = () => {
   // #######################
 
   // delegate warning modal states and actions
-  const [delegateWarningModalOpen, setDelegateWarningModalOpen] =
-    useState(false);
 
-  const openDelegateWarningModal = () => {
-    setDelegateWarningModalOpen(true);
-  };
   const closeDelegateWarningModal = () => {
     setDelegateWarningModalOpen(false);
   };
@@ -133,7 +133,7 @@ const Header = () => {
     if (connected && accountId.length > 0) {
       openStakeModal();
     } else {
-      openDelegateWarningModal();
+      openConnectWalletModal();
     }
   };
 
@@ -152,7 +152,7 @@ const Header = () => {
             <Grid item xs={5}>
               <div className={classes.buttonContainerDesktop}>
                 <RedeemTicketsButton onClick={handleRedeemButtonClick} />
-                <LoginButton />
+                <ConnectButton />
               </div>
               <NavLinks />
             </Grid>
@@ -169,7 +169,7 @@ const Header = () => {
 
             <Grid item xs={5}>
               <div className={classes.buttonContainerTablet}>
-                <LoginButton />
+                <ConnectButton />
 
                 <NavLinks />
               </div>
@@ -183,7 +183,7 @@ const Header = () => {
 
         {/* mobile view */}
         <Hidden smUp>
-          <LoginButton />
+          <ConnectButton />
           <NavLinks />
           <HeaderTitle />
           <HeaderParagraph />

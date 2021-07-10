@@ -8,7 +8,7 @@ const lightTheme = createMuiTheme({
       main: "#556cd6",
     },
     secondary: {
-      main: "#19857b",
+      main: "#2A2C64",
     },
     error: {
       main: red.A400,
@@ -39,7 +39,7 @@ export const darkTheme = createMuiTheme({
       main: "#556cd6",
     },
     secondary: {
-      main: "#19857b",
+      main: "rgba(255, 255, 255, 0.7)",
     },
     error: {
       main: red.A400,

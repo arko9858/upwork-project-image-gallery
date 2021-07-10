@@ -58,9 +58,11 @@ const ImageCarousel = () => {
         className={classes.stepper}
         position="static"
         variant="dots"
+        
         activeStep={activeStep}
         nextButton={
           <IconButton
+            color="secondary"
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
@@ -69,6 +71,7 @@ const ImageCarousel = () => {
         }
         backButton={
           <IconButton
+            color="secondary"
             onClick={handleBack}
             disabled={activeStep === 0}
           >

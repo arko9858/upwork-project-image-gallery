@@ -6,17 +6,21 @@ import {
   Typography,
   Button,
   Divider,
+  CardActionArea,
 } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ThemeContext from "../../contexts/ThemeContext";
-import ParticipateContext from "../../contexts/ParticipateContext";
+import ModalContext from "../../contexts/ModalContext";
+
 
 const activeButton =
   "transparent linear-gradient(270deg, #F16331 0%, #AC1CA6 100%) 0% 0% no-repeat padding-box";
 const disabledButton =
   "transparent linear-gradient(270deg, #E0C6BD 0%, #DB75D7 100%) 0% 0% no-repeat padding-box";
 
+
+  
 const useStyles = makeStyles((theme) => ({
   card: {
     margin: "16px 0",
@@ -69,23 +73,40 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageCard = ({
   imgTitle,
+  imgSrc,
   active,
   topLeftText,
   topRightText,
   bottomLeftText,
   buttonText,
+  modalData,
 }) => {
   const classes = useStyles();
   const darkModeOn = useContext(ThemeContext);
-  const { setParticipateModalOpen } = useContext(ParticipateContext);
+  const {
+    setParticipateModalOpen,
+    setDelegateWarningModalOpen,
+    setParticipateModalData,
+  } = useContext(ModalContext);
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
+    setDelegateWarningModalOpen(true);
+  };
+
+  const handleImageClick = () => {
     setParticipateModalOpen(true);
+    setParticipateModalData(modalData);
   };
 
   return (
     <Card elevation={0} className={classes.card} square>
-      <CardMedia className={classes.media} image={testImage} title={imgTitle} />
+      <CardActionArea onClick={handleImageClick}>
+        <CardMedia
+          className={classes.media}
+          image={imgSrc ? imgSrc : testImage}
+          title={imgTitle}
+        />
+      </CardActionArea>
       <CardContent
         className={
           darkModeOn ? classes.cardContentDark : classes.cardContentLight
@@ -118,7 +139,7 @@ const ImageCard = ({
             disabled={!active}
             size="small"
             className={classes.actionButton}
-            onClick={handleClick}
+            onClick={handleButtonClick}
           >
             {buttonText ? buttonText : "Participate"}
           </Button>

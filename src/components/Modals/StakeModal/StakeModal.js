@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeButton";
 import ThemeContext from "../../../contexts/ThemeContext";
+import AccountContext from "../../../contexts/AccountContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,22 +99,21 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "24px",
     marginBottom: "20px",
   },
-  mobilePapers:{
-    padding:'0 12px'
+  mobilePapers: {
+    padding: "0 12px",
   },
-
 }));
 
 const StakeModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const darkModeOn = useContext(ThemeContext);
+  const { availableBalance } = useContext(AccountContext);
 
   const title = "Stake with Secret Underground";
   const description =
     "Stake your SCRT with Secret Underground in the Mountains and with some luck win this NFT.";
 
   const accountId = "2U8SD89";
-  const availableBalance = 21;
 
   const [scrtAmount, setScrtAmount] = useState("");
 
@@ -208,33 +208,27 @@ const StakeModal = ({ open, handleClose }) => {
             </VioletOrangeButton>
           </div>
           <div className={classes.mobilePapers}>
-
-          <Paper
-            className={darkModeOn ? classes.paperDark : classes.paperLight}
-            square
-            elevation={0}
-          >
-            <Typography  color="textSecondary">
-              Your Account:
-            </Typography>
-            <Typography color="textSecondary" variant="body2">
-              {accountId}
-            </Typography>
-          </Paper>
-          <Paper
-            className={darkModeOn ? classes.paperDark : classes.paperLight}
-            square
-            elevation={0}
-          >
-            <Typography  color="textSecondary">
-              Available Balance:
-            </Typography>
-            <Typography color="textSecondary" variant="body2">
-              {availableBalance + " SCRT"}
-            </Typography>
-          </Paper>
+            <Paper
+              className={darkModeOn ? classes.paperDark : classes.paperLight}
+              square
+              elevation={0}
+            >
+              <Typography color="textSecondary">Your Account:</Typography>
+              <Typography color="textSecondary" variant="body2">
+                {accountId}
+              </Typography>
+            </Paper>
+            <Paper
+              className={darkModeOn ? classes.paperDark : classes.paperLight}
+              square
+              elevation={0}
+            >
+              <Typography color="textSecondary">Available Balance:</Typography>
+              <Typography color="textSecondary" variant="body2">
+                {availableBalance + " SCRT"}
+              </Typography>
+            </Paper>
           </div>
-
         </div>
       </Hidden>
     </ModalWrapper>

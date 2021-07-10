@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Typography, Grid, Divider, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeButton";
+import ModalContext from "../../../contexts/ModalContext";
 import testImage1 from "../../../images/testImage1.jpg";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,9 +60,13 @@ const useStyles = makeStyles((theme) => ({
 
 const ParticipateModal = ({ open, handleClose }) => {
   const classes = useStyles();
-  const imageLabel = "SWIMMINGPOOL";
-  const locationDate = "Azul, 2021";
-  const imageDesc = "Floating in the secrets of the invisible depths.";
+
+  const { participateModalData } = useContext(ModalContext);
+
+  
+  const defaultTitle = "SWIMMINGPOOL";
+  const defaultUploadedBy = "Azul, 2021";
+  const defaultImgDesc = "Floating in the secrets of the invisible depths.";
 
   const handleParticipateClick = () => {
     console.log("Participate Button clicked");
@@ -74,14 +79,30 @@ const ParticipateModal = ({ open, handleClose }) => {
         <div className={classes.root}>
           <Grid container spacing={5}>
             <Grid item xs={12} sm={7}>
-              <img className={classes.img} src={testImage1} alt="test 1" />
+              <img
+                className={classes.img}
+                src={
+                  participateModalData
+                    ? participateModalData.imgSrc
+                    : testImage1
+                }
+                alt={
+                  participateModalData
+                    ? participateModalData.title
+                    : defaultTitle
+                }
+              />
             </Grid>
             <Grid item xs={12} sm={5}>
               <Typography color="textSecondary" className={classes.imageLabel}>
-                {imageLabel}
+                {participateModalData
+                  ? participateModalData.title
+                  : defaultTitle}
               </Typography>
               <Typography color="textSecondary" variant="body1">
-                {locationDate}
+                {participateModalData
+                  ? participateModalData.uploadedBy
+                  : defaultUploadedBy}
               </Typography>
               <Divider className={classes.divider} />
               <Typography
@@ -89,7 +110,9 @@ const ParticipateModal = ({ open, handleClose }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {imageDesc}
+                {participateModalData
+                  ? participateModalData.desc
+                  : defaultImgDesc}
               </Typography>
 
               <div className={classes.button}>
@@ -103,7 +126,15 @@ const ParticipateModal = ({ open, handleClose }) => {
       </Hidden>
       <Hidden smUp>
         <div className={classes.mobileRoot}>
-          <img className={classes.img} src={testImage1} alt="test 1" />
+          <img
+            className={classes.img}
+            src={
+              participateModalData ? participateModalData.imgSrc : testImage1
+            }
+            alt={
+              participateModalData ? participateModalData.title : defaultTitle
+            }
+          />
 
           <div className={classes.mobileDescriptions}>
             <Typography
@@ -111,14 +142,18 @@ const ParticipateModal = ({ open, handleClose }) => {
               align="center"
               variant="subtitle1"
             >
-              {imageLabel}
+              {participateModalData ? participateModalData.title : defaultTitle}
             </Typography>
             <Typography color="textSecondary" align="center" variant="body2">
-              {locationDate}
+              {participateModalData
+                ? participateModalData.uploadedBy
+                : defaultUploadedBy}
             </Typography>
             <Divider variant="middle" className={classes.mobileDivider} />
             <Typography variant="body2" color="textSecondary" align="center">
-              {imageDesc}
+              {participateModalData
+                ? participateModalData.desc
+                : defaultImgDesc}
             </Typography>
 
             <div className={classes.button}>

@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LoginButton = () => {
+const ConnectButton = () => {
   const classes = useStyles();
   const { setTickets, accountId, setAccountId, setConnected } =
     useContext(AccountContext);
@@ -40,4 +40,4 @@ const LoginButton = () => {
   );
 };
 
-export default LoginButton;
+export default ConnectButton;

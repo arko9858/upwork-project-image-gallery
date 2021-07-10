@@ -7,7 +7,7 @@ export const AccountContextProvider = (props) => {
   const [accountId, setAccountId] = useState("");
   const [staked, setStaked] = useState(false);
   const [connected, setConnected] = useState(false);
-
+  const [availableBalance, setAvailableBalance] = useState(23);
 
   const providerValue = {
     tickets,
@@ -18,6 +18,8 @@ export const AccountContextProvider = (props) => {
     setStaked,
     connected,
     setConnected,
+    availableBalance,
+    setAvailableBalance,
   };
 
   return (

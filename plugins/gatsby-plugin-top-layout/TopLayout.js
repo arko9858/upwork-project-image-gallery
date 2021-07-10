@@ -10,7 +10,8 @@ import { IconButton } from "@material-ui/core";
 import { Brightness3, WbSunny } from "@material-ui/icons";
 import ThemeContext from "../../src/contexts/ThemeContext";
 import { AccountContextProvider } from "../../src/contexts/AccountContext";
-import { ParticipateContextProvider } from "../../src/contexts/ParticipateContext";
+import { ModalContextProvider } from "../../src/contexts/ModalContext";
+import { FilterContextProvider } from "../../src/contexts/FilterContext";
 
 export default function TopLayout(props) {
   const [darkThemeOn, setDarkThemeOn] = useState(false);
@@ -32,29 +33,31 @@ export default function TopLayout(props) {
         />
       </Helmet>
       <AccountContextProvider>
-        <ParticipateContextProvider>
-          <ThemeContext.Provider value={darkThemeOn}>
-            <ThemeProvider theme={darkThemeOn ? darkTheme : theme}>
-              <CssBaseline />
+        <FilterContextProvider>
+          <ModalContextProvider>
+            <ThemeContext.Provider value={darkThemeOn}>
+              <ThemeProvider theme={darkThemeOn ? darkTheme : theme}>
+                <CssBaseline />
 
-              <Container maxWidth="lg" style={{ padding: "24px 16px" }}>
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <IconButton
-                    style={
-                      darkThemeOn ? { color: "#fff" } : { color: "#969696" }
-                    }
-                    onClick={handleClick}
-                    aria-label="toggle-theme"
-                  >
-                    {darkThemeOn ? <WbSunny /> : <Brightness3 />}
-                  </IconButton>
-                </div>
+                <Container maxWidth="lg" style={{ padding: "24px 16px" }}>
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <IconButton
+                      style={
+                        darkThemeOn ? { color: "#fff" } : { color: "#969696" }
+                      }
+                      onClick={handleClick}
+                      aria-label="toggle-theme"
+                    >
+                      {darkThemeOn ? <WbSunny /> : <Brightness3 />}
+                    </IconButton>
+                  </div>
 
-                <Layout>{props.children}</Layout>
-              </Container>
-            </ThemeProvider>
-          </ThemeContext.Provider>
-        </ParticipateContextProvider>
+                  <Layout>{props.children}</Layout>
+                </Container>
+              </ThemeProvider>
+            </ThemeContext.Provider>
+          </ModalContextProvider>
+        </FilterContextProvider>
       </AccountContextProvider>
     </React.Fragment>
   );
