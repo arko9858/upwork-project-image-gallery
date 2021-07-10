@@ -1,5 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Typography, Grid, InputBase, Hidden, Paper } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import InputBase from "@material-ui/core/InputBase";
+import Hidden from "@material-ui/core/Hidden";
+import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeButton";

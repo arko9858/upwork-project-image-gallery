@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import ThemeContext from "../../contexts/ThemeContext";
 
 const useStyles = makeStyles((theme) => ({

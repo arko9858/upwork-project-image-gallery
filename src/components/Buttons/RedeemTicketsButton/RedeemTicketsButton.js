@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { ButtonBase, Typography } from "@material-ui/core";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountContext from "../../../contexts/AccountContext";
 
@@ -36,9 +37,7 @@ const RedeemTicketsButton = ({ onClick }) => {
       <ButtonBase disableRipple onClick={onClick}>
         <div className={classes.redeemTextIcon}>
           <Typography variant="h4" component="p">
-            {accountId && accountId.length > 0
-              ? tickets
-              : "?"}
+            {accountId && accountId.length > 0 ? tickets : "?"}
           </Typography>
         </div>
         <Typography

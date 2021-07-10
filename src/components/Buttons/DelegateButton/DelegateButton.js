@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import AccountContext from "../../../contexts/AccountContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +34,7 @@ const DelegateButton = ({ onClick }) => {
   return (
     <Button size="small" className={classes.root} onClick={onClick}>
       <Typography className={classes.text}>
-        {accountId && accountId.length > 0
-          ? "Stake Now"
-          : "Delegate Now"}
+        {accountId && accountId.length > 0 ? "Stake Now" : "Delegate Now"}
       </Typography>
     </Button>
   );

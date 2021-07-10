@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const FilterContext = createContext();
 
 export const FilterContextProvider = (props) => {
-  const [filterString, setFilterString] = useState("champagne");
+  const [filterString, setFilterString] = useState("art");
 
   const providerValue = {
     filterString,

@@ -1,6 +1,6 @@
 import React,{useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import ExclamationIcon from "../../../images/ExclamationIcon.png";
 import ExclamationIconDarkMode from "../../../images/ExclamationIconDarkMode.png";

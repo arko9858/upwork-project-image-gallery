@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
-import { Typography, Grid, Divider, Hidden } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import Hidden from "@material-ui/core/Hidden";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeButton";
@@ -63,7 +66,6 @@ const ParticipateModal = ({ open, handleClose }) => {
 
   const { participateModalData } = useContext(ModalContext);
 
-  
   const defaultTitle = "SWIMMINGPOOL";
   const defaultUploadedBy = "Azul, 2021";
   const defaultImgDesc = "Floating in the secrets of the invisible depths.";

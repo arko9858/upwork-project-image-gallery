@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import FilterContext from "../../contexts/FilterContext";
 import ThemeContext from "../../contexts/ThemeContext";
 
@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "500px",
     alignItems: "center",
     justifyContent: "space-between",
-    margin: "8px 0",
+    marginTop: "8px",
+    marginBottom: "24px",
   },
 
   textLight: {

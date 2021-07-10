@@ -1,5 +1,8 @@
 import React from "react";
-import { Typography, Grid, Divider, Hidden } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Divider from '@material-ui/core/Divider'
+import Hidden from '@material-ui/core/Hidden'
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import ImageCarousel from "./ImageCarousel/ImageCarousel";
