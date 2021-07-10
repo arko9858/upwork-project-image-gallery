@@ -29,12 +29,14 @@ const useStyles = makeStyles((theme) => ({
 
 const DelegateButton = ({ onClick }) => {
   const classes = useStyles();
-  const [accountId] = useContext(AccountContext);
+  const { accountId } = useContext(AccountContext);
 
   return (
     <Button size="small" className={classes.root} onClick={onClick}>
       <Typography className={classes.text}>
-        {accountId && accountId.length > 0 ? "Stake Now" : "Delegate Now"}
+        {accountId && accountId.length > 0
+          ? "Stake Now"
+          : "Delegate Now"}
       </Typography>
     </Button>
   );

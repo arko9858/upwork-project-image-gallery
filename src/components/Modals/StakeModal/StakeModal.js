@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
   inputLight: {
     background: "rgba(255, 255, 255, 0.5)",
-    padding: "20px",
+    padding: "16px",
     borderRadius: "4px",
     fontSize: "1.2rem",
     color: "rgba(0, 0, 0, 0.87)",
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputDark: {
     background: "#FFFFFF43",
-    padding: "20px",
+    padding: "16px",
     borderRadius: "4px",
     color: "#fff",
     fontSize: "1.2rem",
@@ -82,12 +82,29 @@ const useStyles = makeStyles((theme) => ({
 
   mobileRoot: {
     width: "100vw",
-    maxWidth: "400px",
-    padding: "32px 36px",
+    maxWidth: "424px",
+    padding: "36px 16px",
+    textAlign: "center",
   },
+  mobileTitle: {
+    fontSize: "1.6rem",
+  },
+  mobileDescription: {
+    padding: "0 16px",
+    marginTop: "10px",
+    marginBottom: "24px",
+  },
+  mobileButton: {
+    marginTop: "24px",
+    marginBottom: "20px",
+  },
+  mobilePapers:{
+    padding:'0 12px'
+  },
+
 }));
 
-const ParticipateModal = ({ open, handleClose }) => {
+const StakeModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const darkModeOn = useContext(ThemeContext);
 
@@ -168,10 +185,60 @@ const ParticipateModal = ({ open, handleClose }) => {
         </div>
       </Hidden>
       <Hidden smUp>
-        <div className={classes.mobileRoot}>Work in Progress!!</div>
+        <div className={classes.mobileRoot}>
+          <Typography className={classes.mobileTitle} variant="h5">
+            {title}
+          </Typography>
+          <Typography variant="body2" className={classes.mobileDescription}>
+            {description}
+          </Typography>
+          <InputBase
+            placeholder="Enter amount in SCRT"
+            value={scrtAmount}
+            onChange={handleInputChange}
+            inputProps={
+              darkModeOn
+                ? { className: classes.inputDark }
+                : { className: classes.inputLight }
+            }
+          />
+          <div className={classes.mobileButton}>
+            <VioletOrangeButton onClick={handleStakeOnClick}>
+              Stake Now
+            </VioletOrangeButton>
+          </div>
+          <div className={classes.mobilePapers}>
+
+          <Paper
+            className={darkModeOn ? classes.paperDark : classes.paperLight}
+            square
+            elevation={0}
+          >
+            <Typography  color="textSecondary">
+              Your Account:
+            </Typography>
+            <Typography color="textSecondary" variant="body2">
+              {accountId}
+            </Typography>
+          </Paper>
+          <Paper
+            className={darkModeOn ? classes.paperDark : classes.paperLight}
+            square
+            elevation={0}
+          >
+            <Typography  color="textSecondary">
+              Available Balance:
+            </Typography>
+            <Typography color="textSecondary" variant="body2">
+              {availableBalance + " SCRT"}
+            </Typography>
+          </Paper>
+          </div>
+
+        </div>
       </Hidden>
     </ModalWrapper>
   );
 };
 
-export default ParticipateModal;
+export default StakeModal;

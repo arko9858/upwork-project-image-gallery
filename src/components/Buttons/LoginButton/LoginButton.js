@@ -18,13 +18,16 @@ const useStyles = makeStyles(() => ({
 
 const LoginButton = () => {
   const classes = useStyles();
-  const [accountId, setAccountId] = useContext(AccountContext);
+  const { setTickets, accountId, setAccountId, setConnected } =
+    useContext(AccountContext);
 
   const testAccountId = "2U8SD89";
 
   const handleClick = () => {
     if (!accountId || accountId.length <= 0) {
       setAccountId(testAccountId);
+      setTickets(3);
+      setConnected(true);
     }
   };
 

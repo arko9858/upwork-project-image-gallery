@@ -10,8 +10,7 @@ import {
 import { CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ThemeContext from "../../contexts/ThemeContext";
-
-
+import ParticipateContext from "../../contexts/ParticipateContext";
 
 const activeButton =
   "transparent linear-gradient(270deg, #F16331 0%, #AC1CA6 100%) 0% 0% no-repeat padding-box";
@@ -20,8 +19,8 @@ const disabledButton =
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: "100%",
     margin: "16px 0",
+    flexGrow: 1,
   },
 
   media: {
@@ -78,6 +77,11 @@ const ImageCard = ({
 }) => {
   const classes = useStyles();
   const darkModeOn = useContext(ThemeContext);
+  const { setParticipateModalOpen } = useContext(ParticipateContext);
+
+  const handleClick = () => {
+    setParticipateModalOpen(true);
+  };
 
   return (
     <Card elevation={0} className={classes.card} square>
@@ -114,6 +118,7 @@ const ImageCard = ({
             disabled={!active}
             size="small"
             className={classes.actionButton}
+            onClick={handleClick}
           >
             {buttonText ? buttonText : "Participate"}
           </Button>

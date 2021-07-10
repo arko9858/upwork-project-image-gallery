@@ -29,14 +29,16 @@ const useStyles = makeStyles((theme) => ({
 
 const RedeemTicketsButton = ({ onClick }) => {
   const classes = useStyles();
-  const [accountId] = useContext(AccountContext);
+  const { tickets, accountId } = useContext(AccountContext);
 
   return (
     <div className={classes.root}>
       <ButtonBase disableRipple onClick={onClick}>
         <div className={classes.redeemTextIcon}>
-          <Typography variant="h4">
-            {accountId && accountId.length > 0 ? "3" : "?"}
+          <Typography variant="h4" component="p">
+            {accountId && accountId.length > 0
+              ? tickets
+              : "?"}
           </Typography>
         </div>
         <Typography
