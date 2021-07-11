@@ -1,18 +1,26 @@
 import React from "react";
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
-import Hidden from '@material-ui/core/Hidden'
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import Hidden from "@material-ui/core/Hidden";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import ImageCarousel from "./ImageCarousel/ImageCarousel";
 import VioletOrangeButton from "../../Buttons/VioletOrangeButton/VioletOrangeButton";
+import Flake1 from "./Decorations/Flake1";
+import Flake2 from "./Decorations/Flake2";
+import Flake3 from "./Decorations/Flake3";
+import Flake4 from "./Decorations/Flake4";
+import Flake5 from "./Decorations/Flake5";
+import Flake6 from "./Decorations/Flake6";
+import Flake7 from "./Decorations/Flake7";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "32px 36px",
-    paddingBottom:'24px',
+    paddingBottom: "24px",
     width: "768px",
+    position: "relative",
   },
   title: {
     fontSize: "2.35rem",
@@ -75,8 +83,16 @@ const WonModal = ({ open, handleClose }) => {
 
   return (
     <ModalWrapper open={open} handleClose={handleClose}>
+      {/* for desktop and tablet */}
       <Hidden xsDown>
         <div className={classes.root}>
+          <Flake1 />
+          <Flake2 />
+          <Flake3 />
+          <Flake4 />
+          <Flake5 />
+          <Flake6 />
+          <Flake7 />
           <Typography
             className={classes.title}
             color="textSecondary"
@@ -119,8 +135,17 @@ const WonModal = ({ open, handleClose }) => {
           </Grid>
         </div>
       </Hidden>
+
+      {/* for mobile */}
       <Hidden smUp>
         <div className={classes.mobileRoot}>
+          <Flake1 />
+          <Flake2 />
+          <Flake4 />
+          <Flake5 />
+          <Flake6 />
+          <Flake7 />
+
           <Typography
             className={classes.mobileTitle}
             color="textSecondary"
